@@ -1,0 +1,14 @@
+﻿
+p,h2,footer {
+    direction:rtl !important;
+
+}
+ .btn-default {
+  
+ 
+}
+footer {
+    display:none !important;
+    float:left ;
+}
+

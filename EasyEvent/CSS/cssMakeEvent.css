@@ -1,0 +1,43 @@
+﻿  .detailsDiv {
+    float: right;
+    width:50%;
+    margin-top:5px;
+}
+ 
+.detailsInput {
+    float: right;
+    margin-right:1%;
+}
+ 
+.detailsLable {
+    float:right;
+    width:30%;
+    margin-left:2%;
+    font-size:medium;
+}
+.section {
+    width:100%;
+    float:right;
+    margin:1%;
+}
+h3 {
+    float:right;
+    
+}
+.detailsInvite {
+    float:right;
+    font-size:large;
+}
+input[type="email"] {
+    width: 250px;
+   
+}
+input[type="text"] {
+    width: 200px;
+   
+}
+input[type="submit"] {
+  float: right;
+    margin-right: 151%;
+    margin-top:2%;
+}
