@@ -40,6 +40,7 @@ $(function () {
     $("#register-submit").click(function () {
         //בדיקת הכנסת  שם משתמש וסיסמה
         checkRegister();
+        checkValid();
     });
 
     // בעת כניסה לאתר- בדיקת הכנסת  שם משתמש וסיסמה
@@ -94,6 +95,7 @@ $(function () {
             }
             else {
                 $('.fillPassword').addClass('noneError');
+
             }
         }
     }
@@ -101,87 +103,114 @@ $(function () {
     //בעת הירשמות לאתר -בדיקת הכנסת  שם משתמש וסיסמה
     function checkRegister() {
         //מלאים input -האם כל ה
-        if (myValidation()) {
+        //if (myValidation()) {
+        //    $('.msgError').hide();
+        //    $('.signIn , .signInReg').each(function () {
+        //        $(this).removeClass('error-style').val('');
+        //    });
+        //פונקצית שליחת שם משתמש וסיסמה
+        //sendRegister();
+        //ריק input לכל ERROR השמת קלאס  
+
+        $('.signInReg').each(function () {
+
+            if (!($(this).val())) {
+                $(this).addClass('error-style');
+                flag = false;
+            }
+            else {
+                $(this).removeClass('error-style');
+            }
+        });
+        //אם שם המשתמש ריק
+        if (!($('#usernameReg').val())) {
+            debugger;
+            $('.fillUsername').removeClass('noneError');
+            $('.fillUsername').show();
+        }
+        else {
+            $('.fillUsername').addClass('noneError');
+        }
+        //אם המייל ריק
+        if (!($('#emailReg').val())) {
+            //debugger;
+            $('.errorEmailIncorrect').addClass('noneError');
+            $('.fillEmail').removeClass('noneError');
+            $('.fillEmail').show();
+        }
+            //בדיקת תקינות EMAIL   
+        else if (!(validateEmail($('#emailReg').val()))) {
+            //debugger;
+            $('.fillEmail').addClass('noneError');
+            $('.errorEmailIncorrect').removeClass('noneError');
+            $('.errorEmailIncorrect').show();
+            $('#emailReg').addClass('error-style');
+        }
+        else {
+            $('.errorEmailIncorrect').addClass('noneError');
+            $('.fillEmail').addClass('noneError');
+        }
+
+        //אם הסיסמה ריקה
+        if (!($('#passwordReg').val())) {
+            debugger;
+            $('.fillPassword').removeClass('noneError');
+
+            $('.weakPassword').addClass('noneError');
+            $('.fillPassword').show();
+        }
+        else if ($('#result').hasClass('good') ||
+           $('#result').hasClass('strong')) {
+            $('.fillPassword').addClass('noneError');
+            $('.weakPassword').addClass('noneError');
+        }
+        else {
+            $('.fillPassword').addClass('noneError');
+            $('.weakPassword').removeClass('noneError');
+            $('.weakPassword').show();
+            $('#passwordReg').addClass('error-style');
+        }
+
+        //אם אימות הסיסמה ריקה
+        if (!($('#confirm-passwordReg').val())) {
+            debugger;
+            $('.NotPasswordsEqaul').addClass('noneError');
+            $('.fillPasswordAgain').removeClass('noneError');
+            $('.fillPasswordAgain').show();
+        }
+        else if ($('#confirm-passwordReg').val() != $('#confirm-passwordReg').val()) {
+            //$('.fillPasswordAgain').addClass('noneError');
+            $('.fillPasswordAgain').hide();
+            $('.NotPasswordsEqaul').removeClass('noneError');
+            $('.NotPasswordsEqaul').show();
+            $('#passwordReg').addClass('error-style');
+        }
+        else {
+            $('.fillPasswordAgain').addClass('noneError');
+            $('.NotPasswordsEqaul').addClass('noneError');
+        }
+
+
+
+    }
+    function checkValid() {
+        debugger;
+        var flagReg = true;
+        $('.signInReg').each(function () {
+            if ($('.signInReg').hasClass('error-style')) {
+                flagReg = false;
+            }
+
+        });
+        //מלאים input -האם כל ה
+        if (flagReg) {
             $('.msgError').hide();
             $('.signIn , .signInReg').each(function () {
                 $(this).removeClass('error-style').val('');
+
             });
             //פונקצית שליחת שם משתמש וסיסמה
             //sendRegister();
-        } else {
-            //ריק input לכל ERROR השמת קלאס  
-            $('.signInReg').each(function () {
-                if (!($(this).val())) {
-                    $(this).addClass('error-style');
-                }
-                else {
-                    $(this).removeClass('error-style');
-                }
-            });
-            //אם שם המשתמש ריק
-            if (!($('#usernameReg').val())) {
-
-                $('.fillUsername').removeClass('noneError');
-                $('.fillUsername').show();
-            }
-            else {
-                $('.fillUsername').addClass('noneError');
-            }
-            //אם המייל ריק
-            if (!($('#emailReg').val())) {
-                //debugger;
-                $('.errorEmailIncorrect').addClass('noneError');
-                $('.fillEmail').removeClass('noneError');
-                $('.fillEmail').show();
-            }
-                //בדיקת תקינות EMAIL   
-            else if (!(validateEmail($('#emailReg').val()))) {
-                //debugger;
-                $('.fillEmail').addClass('noneError');
-                $('.errorEmailIncorrect').removeClass('noneError');
-                $('.errorEmailIncorrect').show();
-                $('#emailReg').addClass('error-style');
-            }
-            else {
-                $('.errorEmailIncorrect').addClass('noneError');
-                $('.fillEmail').addClass('noneError');
-            }
-
-            //אם הסיסמה ריקה
-            if (!($('#passwordReg').val())) {
-                //debugger;
-                $('.weakPassword').addClass('noneError');
-                $('.fillPassword').removeClass('noneError');
-                $('.fillPassword').show();
-            }
-            else if (!($('#result').hasClass('good') || $('#result').hasClass('strong'))) {
-                //debugger;
-                $('.fillPassword').addClass('noneError');
-                $('.weakPassword').removeClass('noneError');
-                $('.weakPassword').show();
-            }
-            else {
-                $('.fillPassword').addClass('noneError');
-                $('.weakPassword').addClass('noneError');
-            }
-
-            //אם אימות הסיסמה ריקה
-            if (!($('#confirm-passwordReg').val())) {
-                debugger;
-                $('.NotPasswordsEqaul').addClass('noneError');
-                $('.fillPasswordAgain').removeClass('noneError');
-                $('.fillPasswordAgain').show();
-            }
-            else if ($('#passwordReg').val() != $('#confirm-passwordReg').val()) {
-                $('.fillPasswordAgain').addClass('noneError');
-                $('.NotPasswordsEqaul').removeClass('noneError');
-                $('.NotPasswordsEqaul').show();
-            }
-            else {
-                $('.fillPasswordAgain').addClass('noneError');
-                $('.NotPasswordsEqaul').addClass('noneError');
-            }
-
         }
     }
 
@@ -192,7 +221,7 @@ $(function () {
         $(".signInReg").each(function () {
             if (!($(this).val())) {
                 allGood = false;
-                }
+            }
         });
         return allGood;
     }
