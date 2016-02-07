@@ -1,9 +1,13 @@
-﻿var ERRORTEXT = "יש למלא את כל הנתונים";
-var ERRORTEXTPASSWORD = "סיסמה אמורה להכיל 8 תווים מינימום ושני סוגי תווים שונים";
+﻿/// <reference path="jsHome.js" />
+
 $(function () {
 
     //כניסה לאתר
     $('#login-form-link').click(function (e) {
+        //הצגה והסתרה של הכניסות
+        $('.fromRegister').hide();
+        $('.fromSign').show();
+        //.............
         $("#login-form").delay(100).fadeIn(100);
         $("#register-form").fadeOut(100);
         $('#register-form-link').removeClass('active');
@@ -17,6 +21,10 @@ $(function () {
     });
     //הירשמות לאתר
     $('#register-form-link').click(function (e) {
+        //הצגה והסתרה של הכניסות
+        $('.fromSign').hide();
+        $('.fromRegister').show();
+        //.............
         $("#register-form").delay(100).fadeIn(100);
         $("#login-form").fadeOut(100);
         $('#login-form-link').removeClass('active');
@@ -50,12 +58,12 @@ $(function () {
         if ((($('#username').val() != '') & ($('#password').val() != ''))) {
             $('.msgError').hide();
             $('.signIn , .signInReg').each(function () {
-                $(this).removeClass('error-style').val('');
+                $(this).removeClass('error-style');
             });
             //בדיקה האם קיים המשתמש
             ////////////שליחה למסד נתונים האם קיים
             //checkHasUser()
-
+          
             //............................................
             if (true) {
                 //המשתמש קיים
@@ -63,6 +71,7 @@ $(function () {
                     $(this).removeClass('error-style');
                 });
                 $('.msgError').hide();
+                saveData($('#username').val(), $('#password').val());
             }
             else {
                 //השם משתמש או הסיסמה אינם קיימים
@@ -129,6 +138,7 @@ $(function () {
             $('.fillUsername').show();
         }
         else {
+            $('.fillUsername').hide();
             $('.fillUsername').addClass('noneError');
         }
         //אם המייל ריק
@@ -141,7 +151,8 @@ $(function () {
             //בדיקת תקינות EMAIL   
         else if (!(validateEmail($('#emailReg').val()))) {
             //debugger;
-            $('.fillEmail').addClass('noneError');
+            $('.fillEmail').hide();
+            //$('.fillEmail').addClass('noneError');
             $('.errorEmailIncorrect').removeClass('noneError');
             $('.errorEmailIncorrect').show();
             $('#emailReg').addClass('error-style');
@@ -161,11 +172,14 @@ $(function () {
         }
         else if ($('#result').hasClass('good') ||
            $('#result').hasClass('strong')) {
-            $('.fillPassword').addClass('noneError');
-            $('.weakPassword').addClass('noneError');
+            $('.fillPassword').hide();
+            $('.weakPassword').hide();
+            //$('.fillPassword').addClass('noneError');
+            //$('.weakPassword').addClass('noneError');
         }
         else {
-            $('.fillPassword').addClass('noneError');
+            $('.fillPassword').hide();
+            //$('.fillPassword').addClass('noneError');
             $('.weakPassword').removeClass('noneError');
             $('.weakPassword').show();
             $('#passwordReg').addClass('error-style');
@@ -178,19 +192,17 @@ $(function () {
             $('.fillPasswordAgain').removeClass('noneError');
             $('.fillPasswordAgain').show();
         }
-        else if ($('#confirm-passwordReg').val() != $('#confirm-passwordReg').val()) {
+        else if ($('#passwordReg').val() != $('#confirm-passwordReg').val()) {
             //$('.fillPasswordAgain').addClass('noneError');
             $('.fillPasswordAgain').hide();
             $('.NotPasswordsEqaul').removeClass('noneError');
             $('.NotPasswordsEqaul').show();
-            $('#passwordReg').addClass('error-style');
+            $('#confirm-passwordReg').addClass('error-style');
         }
         else {
             $('.fillPasswordAgain').addClass('noneError');
             $('.NotPasswordsEqaul').addClass('noneError');
         }
-
-
 
     }
     function checkValid() {
@@ -206,11 +218,14 @@ $(function () {
         if (flagReg) {
             $('.msgError').hide();
             $('.signIn , .signInReg').each(function () {
-                $(this).removeClass('error-style').val('');
+                $(this).removeClass('error-style');
 
             });
+            debugger;
+            saveData($('#usernameReg').val(), $('#passwordReg').val());
             //פונקצית שליחת שם משתמש וסיסמה
             //sendRegister();
+
         }
     }
 
@@ -225,6 +240,25 @@ $(function () {
         });
         return allGood;
     }
+    //פונקצית שמירת פרטי משתמש
+    //function sendSign(user, password) {
+    //    debugger;
+    //    window.sendHome = function (user,password) {
+    //        // ...
+    //    };
+    //    window.location.href = "Home.html";
+    //}
+
+    function saveData(user, pass) {
+        var account = {
+            User: user,
+            Pass: pass
+        };
+        account = JSON.stringify(account);
+        account = btoa(account);
+        location.assign("Home.html?a=" + account);
+    }
+
 
 
 
