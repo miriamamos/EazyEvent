@@ -103,5 +103,10 @@
 .showError {
      display:block;
 }
-
- .error-style{border-style:solid!important;border-color: #b94a48!important;}
+.error-style{border-style:solid!important;border-color: #b94a48!important;}
+/*.fromSign {
+    display:block;
+}*/
+.fromRegister {
+ display:none;
+}
