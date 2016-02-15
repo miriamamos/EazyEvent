@@ -1,45 +1,26 @@
 ﻿  .detailsDiv {
-   
+   text-align:center;
 }
- 
-/*.detailsInput {
-    float: right;
-    margin-right:1%;
+ h2{
+    text-align:center;
 }
- 
-.detailsLable {
-    float:right;
-    width:30%;
-    margin-left:2%;
-    font-size:medium;
-}*/
 
-/*h3 {
-    float:right;
-    
-}*/
-/*.detailsInvite {
-    float:right;
-    font-size:large;
-}
-input[type="email"] {
-    width: 250px;
-   
-}
-input[type="text"] {
-    width: 200px;
-   
-}
-input[type="submit"] {
-  float: right;
-    margin-right: 151%;
-    margin-top:2%;
-}*/
 .section {
-    width:80%;
-    float: right;
-    direction: rtl;
+  /*  align-content:center;*/
+    width:65%; 
 }
 .detailsInput {
-  width:35%;
+  /*text-align:center;*/
+  /*width:30px;*/
+  
+}
+.detailsLabel{
+    font-size:large;
+    font-family:Arial;
+    margin:10px;
+    text-align:center;
+
+}
+footer{
+    align-content:center;
 }

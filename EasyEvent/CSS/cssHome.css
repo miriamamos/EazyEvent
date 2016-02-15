@@ -4,6 +4,10 @@ p,h2,footer {
 
 }
 footer {
-    display:none !important;
+    display:block !important;
     float:left ;
+  
+}
+#ReMakeEvent, #ReManageEvent, #ReViewEvent {
+    display:none;
 }

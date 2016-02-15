@@ -1,23 +1,23 @@
 ﻿
 $(function () {
     debugger;
-    var signIn;
-    loadData();
-    $('.signIn').text(signIn.User);
+    //var signIn;
+    //loadData();
+    //$('.signIn').text(signIn.User);
     //$('.signIn').text(signIn.user);
     //insert(account.User,account.Pass)
     //מעבר לדפים
     $('a').click(function () {
         var operation = $(this).attr('id');
-        checkPassword()
+        //checkPassword()
         debugger;
-        var StringName = 'html/' + operation + '.html'.toString();
+        //var StringName = 'html/' + operation + '.html'.toString();
         goToForm(operation)
-        $("#viewPage").load(StringName);
+        //$("#viewPage").load(StringName);
         $('footer').attr('style', 'display: block !important');
 
     });
- 
+
 
     //חזרה לדף ראשי
     $("#btnReturn").click(function () {
@@ -37,18 +37,34 @@ $(function () {
         //בדיקות תקינות
         switch (operation) {
             case "MakeEvent": {
+               
+                $("#viewPage").replaceWith($("#ReMakeEvent"));
+                $("#ReMakeEvent").show();
+                $("#ReManageEvent").hide();
+                $("#ReViewEvent").hide();
+                    break;
                 //ניהול אירוע עם הבאת נתונים
             }
-            case "ManagetEvent": {
+            case "ManageEvent": {
+                $("#ReManageEvent").show();
+                $("#ReMakeEvent").hide();
+                $("#ReViewEvent").hide();
+                $("#viewPage").replaceWith($("#ReManageEvent"));
+                 break;
             }
             case "viewEvent": {
+                $("#ReViewEvent").show();
+                $("#ReManageEvent").hide();
+                $("#ReMakeEvent").hide();
+                $("#viewPage").replaceWith($("#ReViewEvent"));
+                 break;
             }
             default:
 
         }
 
+
     }
- 
 
     function loadData() {
         debugger;
@@ -70,10 +86,9 @@ $(function () {
         //insert(account.User, account.Pass);
         return true;
     }
-  
-  
-}); 
-var sign
+});
+ 
+
 //function sendHome(user, password) {
 //    debugger;
 //    sign= user;
