@@ -2,8 +2,8 @@
 $(function () {
     debugger;
     //var signIn;
-    //loadData();
-    //$('.signIn').text(signIn.User);
+    loadData();
+    
     //$('.signIn').text(signIn.user);
     //insert(account.User,account.Pass)
     //מעבר לדפים
@@ -83,6 +83,7 @@ $(function () {
         account = JSON.parse(account);
         //do what you need with the Object
         signIn = account;
+        $('.signIn').text(signIn.User);
         //insert(account.User, account.Pass);
         return true;
     }
@@ -98,29 +99,19 @@ $(function () {
 
 
 
-//function loadData() {
-//    var account = localStorage.getItem('_account');
-//    if (!account) return false;
-//    localStorage.removeItem('_account');
-//    //decodes a string data encoded using base-64
-//    account = atob(account);
-//    //parses to Object the JSON string
-//    account = JSON.parse(account);
-//    //do what you need with the Object
-//    //fillFields(account.User, account.Pass);
-   
-//    return true;
-//}
+function loadData() {
+    var account = localStorage.getItem('_account');
+    if (!account) return false;
+    localStorage.removeItem('_account');
+    //decodes a string data encoded using base-64
+    account = atob(account);
+    //parses to Object the JSON string
+    account = JSON.parse(account);
+    //do what you need with the Object
+    //fillFields(account.User, account.Pass);
+   $('.signIn').text(signIn.User);
+    return true;
+}
 
-//function saveData(user, pass) {
-//    debugger;
-//    var account = {
-//        User: user,
-//        Pass: pass
-//    };
-//    account = JSON.stringify(account);
-//    account = btoa(account);
-//    location.assign("Home.html?a=" + account);
-//}
 
 

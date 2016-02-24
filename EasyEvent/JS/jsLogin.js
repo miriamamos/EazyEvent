@@ -256,7 +256,7 @@ $(function () {
         };
         account = JSON.stringify(account);
         account = btoa(account);
-        location.assign("Home.html?a=" + account);
+        location.assign("html/Home.html?a=" + account);
     }
 
 
