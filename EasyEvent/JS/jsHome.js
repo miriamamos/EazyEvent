@@ -85,10 +85,11 @@ $(function () {
         signIn = account;
         $('.signIn').text(signIn.User);
         //insert(account.User, account.Pass);
+        newUser(signIn.User, signIn.Pass);
         return true;
     }
 });
- 
+
 
 //function sendHome(user, password) {
 //    debugger;

@@ -1,16 +1,15 @@
-﻿var USER = {
-    arrSignIn: function arrSignIn() {
+﻿debugger;
+var USER = {
+      arrSignIn: function arrSignIn() {
       arrSignIn = [];
-    },
-
-  
-    //זהות משתמש
+   },
+     //זהות משתמש
     User: function User(userName, password) {
         this.userName = userName;
         this.password = password;
         this.arrMakeEvent = [];
     },
-    //פרטי אירוע
+      //פרטי אירוע
     Event: function Event(nameEvent, typeEvent, place, addres, date) {
         this.nameEvent = nameEvent;
         this.typeEvent = typeEvent;
